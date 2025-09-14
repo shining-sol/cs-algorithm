@@ -1,26 +1,42 @@
 import java.io.*;
 import java.util.*;
 
-class Solution{
-    public int solution(int[] nums) {
+class Solution {
+    public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
+        int w = 0;
 
-        HashMap<Integer, Integer> map = new HashMap<>();
+        Queue<Integer> q = new LinkedList<>();
 
-        for(int i=0; i<nums.length; i++){
-            if(map.containsKey(nums[i])){
-                map.put(nums[i], map.get(nums[i]) + 1);
+        for(int i=0; i<truck_weights.length; i++){
+            while(true){
+                if(q.size() == bridge_length){
+                    w -= q.poll();
+                }
+
+                else if(q.isEmpty()){
+                    q.add(truck_weights[i]);
+                    w = truck_weights[i];
+                    answer++;
+                    break;
+                }
+
+                else{
+                    if(w+truck_weights[i] <= weight){
+                        q.add(truck_weights[i]);
+                        w = w + truck_weights[i];
+                        answer++;
+                        break;
+                    }
+                    else{
+                        q.add(0);
+                        answer++;
+                    }
+                }
+        
             }
-            else{
-                map.put(nums[i], 1);
-            }
+
         }
-
-        if(map.size() >= nums.length / 2){
-            return nums.length / 2;
-        }
-
-
-        return map.size();
+        return answer + bridge_length;
     }
 }
