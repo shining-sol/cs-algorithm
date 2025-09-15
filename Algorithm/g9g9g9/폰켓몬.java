@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-class 폭행몬 {
+class Solution {
     public int solution(int[] nums) {
         int answer = 0;
         Set<Integer> poket = new HashSet<>();
@@ -14,4 +14,5 @@ class 폭행몬 {
 
         return answer;
     }
+
 }
