@@ -1,6 +1,6 @@
 import java.util.*;
 
-class 다리건너기 {
+class Solution {
     static class Truck {
         int w;
         int exitTime; 
@@ -37,3 +37,4 @@ class 다리건너기 {
         return time;
     }
 }
+
